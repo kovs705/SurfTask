@@ -12,6 +12,7 @@ class ViewController: VCExt {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // MARK: - Main containers
         self.view.addSubview(scrollView)
         configureSV()
         
@@ -24,6 +25,10 @@ class ViewController: VCExt {
         scrollView.addSubview(formView)
         configureFormView()
         
+        
+        // MARK: - Subviews
+        configureTitle()
+        configureBody()
         
     }
     

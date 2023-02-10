@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E94EEE82996BF71008122B2 /* SurfLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E94EEE72996BF71008122B2 /* SurfLabel.swift */; };
+		4E94EEEA2996C499008122B2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E94EEE92996C499008122B2 /* Extensions.swift */; };
 		4E97EF4829957CF700963E2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E97EF4729957CF700963E2F /* AppDelegate.swift */; };
 		4E97EF4A29957CF700963E2F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E97EF4929957CF700963E2F /* SceneDelegate.swift */; };
 		4E97EF4C29957CF700963E2F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E97EF4B29957CF700963E2F /* ViewController.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E94EEE72996BF71008122B2 /* SurfLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfLabel.swift; sourceTree = "<group>"; };
+		4E94EEE92996C499008122B2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4E97EF4429957CF600963E2F /* SurfTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SurfTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E97EF4729957CF700963E2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4E97EF4929957CF700963E2F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +47,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E94EEE52996BF1F008122B2 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				4E97EF61299580E500963E2F /* AcceptButton.swift */,
+				4E97EF63299580F200963E2F /* ElementButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		4E94EEE62996BF30008122B2 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				4E94EEE72996BF71008122B2 /* SurfLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
 		4E97EF3B29957CF600963E2F = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				4E97EF5E29957DB400963E2F /* ViewControllerExt.swift */,
+				4E94EEE92996C499008122B2 /* Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -102,8 +124,8 @@
 		4E97EF60299580C700963E2F /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				4E97EF61299580E500963E2F /* AcceptButton.swift */,
-				4E97EF63299580F200963E2F /* ElementButton.swift */,
+				4E94EEE62996BF30008122B2 /* Labels */,
+				4E94EEE52996BF1F008122B2 /* Buttons */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -181,6 +203,8 @@
 			files = (
 				4E97EF64299580F200963E2F /* ElementButton.swift in Sources */,
 				4E97EF4C29957CF700963E2F /* ViewController.swift in Sources */,
+				4E94EEE82996BF71008122B2 /* SurfLabel.swift in Sources */,
+				4E94EEEA2996C499008122B2 /* Extensions.swift in Sources */,
 				4E97EF4829957CF700963E2F /* AppDelegate.swift in Sources */,
 				4E97EF62299580E500963E2F /* AcceptButton.swift in Sources */,
 				4E97EF5F29957DB400963E2F /* ViewControllerExt.swift in Sources */,

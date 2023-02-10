@@ -11,6 +11,12 @@ class VCExt: UIViewController {
     
     // MARK: - Properties
     
+    let padding: CGFloat = 22
+    
+    let surfTitle = SurfLabel(textColor: .label, textSize: 30, text: SurfText.title, isBold: true)
+    let surfBody = SurfLabel(textColor: .systemGray, textSize: 14, text: SurfText.body, isBold: false)
+    let surfCall = SurfLabel(textColor: .systemGray, textSize: 14, text: SurfText.iWant, isBold: false)
+    
     let imageContainer: UIView = {
         let imageContainer = UIView()
         imageContainer.backgroundColor = .clear
@@ -33,7 +39,7 @@ class VCExt: UIViewController {
     
     let formView: UIView = {
         let formView = UIView()
-        formView.backgroundColor = .white
+        formView.backgroundColor = .systemBackground
         formView.layer.cornerRadius = 40
         
         formView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,6 +62,30 @@ class VCExt: UIViewController {
     
     
     // MARK: - Functions
+    
+    
+    func configureTitle() {
+        surfTitle.translatesAutoresizingMaskIntoConstraints = false
+        formView.addSubview(surfTitle)
+        
+        NSLayoutConstraint.activate([
+            surfTitle.topAnchor.constraint(equalTo: formView.topAnchor, constant: 25),
+            surfTitle.leadingAnchor.constraint(equalTo: formView.leadingAnchor, constant: padding),
+            surfTitle.trailingAnchor.constraint(equalTo: formView.trailingAnchor, constant: -padding),
+        ])
+    }
+    
+    func configureBody() {
+        surfBody.translatesAutoresizingMaskIntoConstraints = false
+        surfBody.giveLineSpacing(lineSpacing: 5)
+        formView.addSubview(surfBody)
+        
+        NSLayoutConstraint.activate([
+            surfBody.topAnchor.constraint(equalTo: surfTitle.bottomAnchor, constant: 20),
+            surfBody.leadingAnchor.constraint(equalTo: formView.leadingAnchor, constant: padding),
+            surfBody.trailingAnchor.constraint(equalTo: formView.trailingAnchor, constant: -padding)
+        ])
+    }
     
     func configureFormView() {
         let g = scrollView.contentLayoutGuide
