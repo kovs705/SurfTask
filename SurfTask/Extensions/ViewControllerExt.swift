@@ -11,11 +11,15 @@ class VCExt: UIViewController {
     
     // MARK: - Properties
     
-    let padding: CGFloat = 22
+    var listOfLanguages: [Language] = [Languages.iOS, Languages.android, Languages.design, Languages.flutter, Languages.qa, Languages.pm, Languages.kotlin, Languages.cXX, Languages.react, Languages.web]
     
-    let surfTitle = SurfLabel(textColor: .label, textSize: 30, text: SurfText.title, isBold: true)
-    let surfBody = SurfLabel(textColor: .systemGray, textSize: 14, text: SurfText.body, isBold: false)
-    let surfCall = SurfLabel(textColor: .systemGray, textSize: 14, text: SurfText.iWant, isBold: false)
+    let padding: CGFloat = 20
+    let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    
+    let surfTitle = SurfLabel(textColor: .label, textSize: 26, isBold: true)
+    let surfBody = SurfLabel(textColor: .systemGray, textSize: 15, isBold: false)
+    let surfBody2 = SurfLabel(textColor: .systemGray, textSize: 15, isBold: false)
+    let surfCall = SurfLabel(textColor: .systemGray, textSize: 14, isBold: false)
     
     let imageContainer: UIView = {
         let imageContainer = UIView()
@@ -60,12 +64,27 @@ class VCExt: UIViewController {
         return scrollView
     }()
     
+    lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.frame = CGRect(x: 0, y: 0, width: Int(formView.bounds.width), height: 55)
+        collectionView.register(LanguageCell.self, forCellWithReuseIdentifier: LanguageCell.reuseID)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.alwaysBounceHorizontal = true
+        collectionView.backgroundColor = .systemBackground
+        collectionView.showsHorizontalScrollIndicator = false
+        
+        return collectionView
+    }()
     
-    // MARK: - Functions
+    // MARK: - Data Functions
     
+    
+    
+    // MARK: - UI Functions
     
     func configureTitle() {
         surfTitle.translatesAutoresizingMaskIntoConstraints = false
+        surfTitle.text = SurfText.title
         formView.addSubview(surfTitle)
         
         NSLayoutConstraint.activate([
@@ -77,11 +96,12 @@ class VCExt: UIViewController {
     
     func configureBody() {
         surfBody.translatesAutoresizingMaskIntoConstraints = false
+        surfBody.text = SurfText.body
         surfBody.giveLineSpacing(lineSpacing: 5)
         formView.addSubview(surfBody)
         
         NSLayoutConstraint.activate([
-            surfBody.topAnchor.constraint(equalTo: surfTitle.bottomAnchor, constant: 20),
+            surfBody.topAnchor.constraint(equalTo: surfTitle.bottomAnchor, constant: 18),
             surfBody.leadingAnchor.constraint(equalTo: formView.leadingAnchor, constant: padding),
             surfBody.trailingAnchor.constraint(equalTo: formView.trailingAnchor, constant: -padding)
         ])
@@ -144,6 +164,52 @@ class VCExt: UIViewController {
         ])
         
     }
+    
+    func configureLayout() {
+        layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
+        // layout.itemSize = CGSize(width: 100, height: 80)
+        layout.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+    }
+    
+    func configureCollectionView() {
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: surfBody.bottomAnchor, constant: 10),
+            collectionView.leadingAnchor.constraint(equalTo: formView.leadingAnchor, constant: padding),
+            collectionView.trailingAnchor.constraint(equalTo: formView.trailingAnchor),
+            collectionView.widthAnchor.constraint(equalToConstant: formView.bounds.width),
+            collectionView.heightAnchor.constraint(equalToConstant: 55)
+        ])
+    }
+}
 
+// MARK: - UICollectionView
+extension VCExt: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let itemLang = listOfLanguages[indexPath.row]
+        return CGSize(width: itemLang.langName.size(withAttributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)]).width + 45,
+                      height: itemLang.langName.size(withAttributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)]).height + 25)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout
+        collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    
     
 }
+

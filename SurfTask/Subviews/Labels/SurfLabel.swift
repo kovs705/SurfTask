@@ -15,11 +15,10 @@ class SurfLabel: UILabel {
         configure()
     }
     
-    convenience init(textColor: UIColor, textSize: CGFloat, text: String, isBold: Bool) {
+    convenience init(textColor: UIColor, textSize: CGFloat, isBold: Bool) {
         self.init(frame: .zero)
         self.textColor = textColor
         self.font = .systemFont(ofSize: textSize, weight: isBold ? .bold : .regular)
-        self.text = text
         
     }
     

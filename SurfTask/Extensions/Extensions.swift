@@ -7,9 +7,23 @@
 
 import UIKit
 
+enum Languages {
+    static let iOS = Language(langName: "iOS", state: false)
+    static let android = Language(langName: "Android", state: false)
+    static let design = Language(langName: "Design", state: false)
+    static let flutter = Language(langName: "Flutter", state: false)
+    static let qa = Language(langName: "QA", state: false)
+    static let pm = Language(langName: "PM", state: false)
+    static let kotlin = Language(langName: "Kotlin", state: false)
+    static let cXX = Language(langName: "C/C++", state: false)
+    static let react = Language(langName: "React Native", state: false)
+    static let web = Language(langName: "JS", state: false)
+}
+
 enum SurfText {
     static let title = "Стажировка в Surf"
     static let body = "Работай над реальными задачами под руководством опытного наставника и получи возможность стать частью команды мечты."
+    static let body2 = "Получай стипендию, выстраивай удобный график, работай на современном железе."
     static let iWant = "Хочешь к нам?"
 }
 

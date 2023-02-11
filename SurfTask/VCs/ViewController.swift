@@ -7,7 +7,9 @@
 
 import UIKit
 
-class ViewController: VCExt {
+class ViewController: VCExt, UICollectionViewDataSource {
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,25 @@ class ViewController: VCExt {
         configureTitle()
         configureBody()
         
+        // MARK: - CollectionView (one-line)
+        configureLayout()
+        formView.addSubview(collectionView)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        configureCollectionView()
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return listOfLanguages.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LanguageCell.reuseID, for: [indexPath.row]) as! LanguageCell
+        let lang = listOfLanguages[indexPath.row]
+        cell.set(lang: lang)
+        
+        return cell
     }
     
     
