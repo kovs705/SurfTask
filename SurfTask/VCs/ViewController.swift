@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: VCExt, UICollectionViewDataSource, UITableViewDataSource {
+class ViewController: VCExt, UICollectionViewDataSource {
     
     
     override func viewDidLoad() {
@@ -68,22 +68,6 @@ class ViewController: VCExt, UICollectionViewDataSource, UITableViewDataSource {
             return cell
         }
     }
-    
-    // MARK: - UITableView
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listOfLanguages.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: TVLangCell.reuseID, for: [indexPath.row]) as! TVLangCell
-        let lang = listOfLanguages[indexPath.row]
-        
-        cell.set(lang: lang)
-        
-        return cell
-    }
-    
     
     
 }

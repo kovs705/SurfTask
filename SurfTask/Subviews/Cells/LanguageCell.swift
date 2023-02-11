@@ -39,8 +39,11 @@ class LanguageCell: UICollectionViewCell {
         contentView.backgroundColor = .systemGray6
         contentView.layer.cornerRadius = 15
         
+        let heightConstraint = contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 44)
+        heightConstraint.priority = UILayoutPriority(999)
+        
         NSLayoutConstraint.activate([
-            contentView.heightAnchor.constraint(lessThanOrEqualToConstant: 44),
+            heightConstraint,
             langLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             langLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])

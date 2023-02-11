@@ -154,7 +154,7 @@ class VCExt: UIViewController {
         
         NSLayoutConstraint.activate([
             imageContainer.widthAnchor.constraint(equalToConstant: view.bounds.width),
-            imageContainer.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.65),
+            imageContainer.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.7),
             
             imageContainer.topAnchor.constraint(equalTo: g.topAnchor, constant: -50),
             imageContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -213,7 +213,6 @@ class VCExt: UIViewController {
             collectionView.topAnchor.constraint(equalTo: surfBody.bottomAnchor, constant: 10),
             collectionView.leadingAnchor.constraint(equalTo: formView.leadingAnchor, constant: padding),
             collectionView.trailingAnchor.constraint(equalTo: formView.trailingAnchor),
-            collectionView.widthAnchor.constraint(equalToConstant: formView.bounds.width),
             collectionView.heightAnchor.constraint(equalToConstant: 55)
         ])
     }
@@ -224,7 +223,6 @@ class VCExt: UIViewController {
             collectionView2.topAnchor.constraint(equalTo: surfBody2.bottomAnchor, constant: 10),
             collectionView2.leadingAnchor.constraint(equalTo: formView.leadingAnchor, constant: padding),
             collectionView2.trailingAnchor.constraint(equalTo: formView.trailingAnchor),
-            collectionView2.widthAnchor.constraint(equalToConstant: formView.bounds.width),
             collectionView2.heightAnchor.constraint(equalToConstant: 110)
         ])
     }
