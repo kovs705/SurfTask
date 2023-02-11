@@ -34,20 +34,15 @@ class LanguageCell: UICollectionViewCell {
         contentView.addSubview(langLabel)
         langLabel.translatesAutoresizingMaskIntoConstraints = false
         langLabel.textColor = .label
+        langLabel.lineBreakMode = .byTruncatingTail
         
         contentView.backgroundColor = .systemGray6
         contentView.layer.cornerRadius = 15
         
         NSLayoutConstraint.activate([
-            
-            contentView.heightAnchor.constraint(equalToConstant: 16.0 + 25.0),
+            contentView.heightAnchor.constraint(lessThanOrEqualToConstant: 44),
             langLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             langLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-            
-//            langLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
-//            langLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-//            langLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
-//            langLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding)
         ])
     }
     

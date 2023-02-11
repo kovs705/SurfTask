@@ -15,10 +15,11 @@ class VCExt: UIViewController {
     
     let padding: CGFloat = 20
     let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    let layout2: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     
     let surfTitle = SurfLabel(textColor: .label, textSize: 26, isBold: true)
-    let surfBody = SurfLabel(textColor: .systemGray, textSize: 15, isBold: false)
-    let surfBody2 = SurfLabel(textColor: .systemGray, textSize: 15, isBold: false)
+    let surfBody = SurfLabel(textColor: .systemGray, textSize: 14.5, isBold: false)
+    let surfBody2 = SurfLabel(textColor: .systemGray, textSize: 14.5, isBold: false)
     let surfCall = SurfLabel(textColor: .systemGray, textSize: 14, isBold: false)
     
     let imageContainer: UIView = {
@@ -76,6 +77,19 @@ class VCExt: UIViewController {
         return collectionView
     }()
     
+    lazy var collectionView2: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout2)
+        collectionView.frame = CGRect(x: 0, y: 0, width: Int(formView.bounds.width), height: 110)
+        collectionView.register(LanguageCell.self, forCellWithReuseIdentifier: LanguageCell.reuseID)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.alwaysBounceHorizontal = true
+        collectionView.backgroundColor = .systemBackground
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.alwaysBounceVertical = false
+        
+        return collectionView
+    }()
+    
     // MARK: - Data Functions
     
     
@@ -104,6 +118,19 @@ class VCExt: UIViewController {
             surfBody.topAnchor.constraint(equalTo: surfTitle.bottomAnchor, constant: 18),
             surfBody.leadingAnchor.constraint(equalTo: formView.leadingAnchor, constant: padding),
             surfBody.trailingAnchor.constraint(equalTo: formView.trailingAnchor, constant: -padding)
+        ])
+    }
+    
+    func configureBody2() {
+        surfBody2.translatesAutoresizingMaskIntoConstraints = false
+        surfBody2.text = SurfText.body2
+        surfBody2.giveLineSpacing(lineSpacing: 5)
+        formView.addSubview(surfBody2)
+        
+        NSLayoutConstraint.activate([
+            surfBody2.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 18),
+            surfBody2.leadingAnchor.constraint(equalTo: formView.leadingAnchor, constant: padding),
+            surfBody2.trailingAnchor.constraint(equalTo: formView.trailingAnchor, constant: -padding)
         ])
     }
     
@@ -173,6 +200,13 @@ class VCExt: UIViewController {
         layout.minimumInteritemSpacing = 10
     }
     
+    func configureLayout2() {
+        layout2.scrollDirection = UICollectionView.ScrollDirection.horizontal
+        layout2.sectionInset = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
+        layout2.minimumLineSpacing = 10
+        layout2.minimumInteritemSpacing = 10
+    }
+    
     func configureCollectionView() {
         
         NSLayoutConstraint.activate([
@@ -183,6 +217,18 @@ class VCExt: UIViewController {
             collectionView.heightAnchor.constraint(equalToConstant: 55)
         ])
     }
+    
+    func configureCollectionView2() {
+        
+        NSLayoutConstraint.activate([
+            collectionView2.topAnchor.constraint(equalTo: surfBody2.bottomAnchor, constant: 10),
+            collectionView2.leadingAnchor.constraint(equalTo: formView.leadingAnchor, constant: padding),
+            collectionView2.trailingAnchor.constraint(equalTo: formView.trailingAnchor),
+            collectionView2.widthAnchor.constraint(equalToConstant: formView.bounds.width),
+            collectionView2.heightAnchor.constraint(equalToConstant: 110)
+        ])
+    }
+    
 }
 
 // MARK: - UICollectionView
