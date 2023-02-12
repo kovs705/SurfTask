@@ -63,13 +63,14 @@ class ViewController: VCExt, UICollectionViewDataSource {
             cell.set(lang: lang)
             
             return cell
-        } else {
+        } else if collectionView == self.collectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LanguageCell.reuseID, for: [indexPath.row]) as! LanguageCell
             let lang = listOfLanguages[indexPath.row]
             cell.set(lang: lang)
             
             return cell
         }
+        return UICollectionViewCell()
     }
     
     
@@ -100,14 +101,9 @@ class ViewController: VCExt, UICollectionViewDataSource {
             }
             self.collectionView.reloadData()
             self.collectionView.layoutIfNeeded()
+
             
-            for result in listOfLanguages {
-                if result.state {
-                    results.append(result.langName)
-                }
-            }
-            
-        } else if collectionView == self.collectionView2{
+        } else if collectionView == self.collectionView2 {
             var object = botttomList[indexPath.row]
             guard let cell = collectionView2.cellForItem(at: indexPath) as? LanguageCell else { return }
             
@@ -116,21 +112,17 @@ class ViewController: VCExt, UICollectionViewDataSource {
             }
             
             if object.state == true {
-                cell.contentView.backgroundColor = UIColor(named: "darkDarkGray")
-                cell.layer.cornerRadius = 15
                 cell.set(lang: object)
-                cell.langLabel.textColor = .white
-            } else {
-                cell.contentView.backgroundColor = .systemGray6
-                cell.layer.cornerRadius = 15
+                self.collectionView.reloadItems(at: [indexPath])
                 
+            } else {
                 cell.set(lang: object)
-                cell.langLabel.textColor = .label
+                self.collectionView.reloadItems(at: [indexPath])
             }
             
             botttomList.remove(at: indexPath.row)
             botttomList.insert(object, at: indexPath.row)
-
+            
             self.collectionView2.layoutIfNeeded()
             self.collectionView2.reloadData()
         }

@@ -13,8 +13,6 @@ class VCExt: UIViewController {
     var listOfLanguages: [Language] = [Languages.iOS, Languages.android, Languages.design, Languages.flutter, Languages.qa, Languages.pm, Languages.kotlin, Languages.cXX, Languages.react, Languages.objc]
     var botttomList: [Language] = [Languages.iOS, Languages.android, Languages.design, Languages.flutter, Languages.qa, Languages.pm, Languages.kotlin, Languages.cXX, Languages.react, Languages.objc]
     
-    var results = [String]()
-    
     let padding: CGFloat = 20
     let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     let layout2: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -218,10 +216,6 @@ class VCExt: UIViewController {
         let close = UIAlertAction(title: "Закрыть", style: .cancel)
         ac.addAction(close)
         present(ac, animated: true)
-
-        if !results.isEmpty {
-            print("Молодец, ты выбрал \(results)!")
-        }
     }
     
     
