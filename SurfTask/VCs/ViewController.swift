@@ -47,6 +47,8 @@ class ViewController: VCExt, UICollectionViewDataSource {
         collectionView2.dataSource = self
         configureCollectionView2()
         
+        configureBottomView()
+        configureCallLabel()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -10,9 +10,4 @@ import Foundation
 struct Language {
     var langName: String
     var state: Bool
-    
-    init(langName: String, state: Bool) {
-        self.langName = langName
-        self.state = state
-    }
 }

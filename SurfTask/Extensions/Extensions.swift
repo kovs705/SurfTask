@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 enum Languages {
     static let iOS = Language(langName: "iOS", state: false)
@@ -16,9 +17,14 @@ enum Languages {
     static let pm = Language(langName: "PM", state: false)
     static let kotlin = Language(langName: "Kotlin", state: false)
     static let cXX = Language(langName: "C/C++", state: false)
-    static let react = Language(langName: "React Native", state: false)
-    static let web = Language(langName: "JS", state: false)
+    static let react = Language(langName: "ReactNative", state: false)
+    static let objc = Language(langName: "Objective-C", state: false)
 }
+
+extension Color {
+    static let darkarkGray = Color("darkDarkGray")
+}
+
 
 enum SurfText {
     static let title = "Стажировка в Surf"

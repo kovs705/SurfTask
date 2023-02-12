@@ -10,8 +10,8 @@ import UIKit
 class VCExt: UIViewController {
     
     // MARK: - Properties
-    
-    var listOfLanguages: [Language] = [Languages.iOS, Languages.android, Languages.design, Languages.flutter, Languages.qa, Languages.pm, Languages.kotlin, Languages.cXX, Languages.react, Languages.web]
+    var listOfLanguages: [Language] = [Languages.iOS, Languages.android, Languages.design, Languages.flutter, Languages.qa, Languages.pm, Languages.kotlin, Languages.cXX, Languages.react, Languages.objc]
+    var botttomList: [Language] = [Languages.iOS, Languages.android, Languages.design, Languages.flutter, Languages.qa, Languages.react,]
     
     let padding: CGFloat = 20
     let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -20,9 +20,11 @@ class VCExt: UIViewController {
     let surfTitle = SurfLabel(textColor: .label, textSize: 26, isBold: true)
     let surfBody = SurfLabel(textColor: .systemGray, textSize: 14.5, isBold: false)
     let surfBody2 = SurfLabel(textColor: .systemGray, textSize: 14.5, isBold: false)
-    let surfCall = SurfLabel(textColor: .systemGray, textSize: 14, isBold: false)
+    let surfCall = SurfLabel(textColor: .systemGray, textSize: 14.5, isBold: false)
     
-    let imageContainer: UIView = {
+    let acceptButton = AcceptButton(backgroundColor: UIColor(named: "darkDarkGray")!)
+    
+    lazy var imageContainer: UIView = {
         let imageContainer = UIView()
         imageContainer.backgroundColor = .clear
         imageContainer.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +32,7 @@ class VCExt: UIViewController {
         return imageContainer
     }()
     
-    let backImage: UIImageView = {
+    lazy var backImage: UIImageView = {
         let back = UIImageView()
         back.backgroundColor = .black
         back.image = UIImage(named: "iceland")
@@ -42,7 +44,7 @@ class VCExt: UIViewController {
         return back
     }()
     
-    let formView: UIView = {
+    lazy var formView: UIView = {
         let formView = UIView()
         formView.backgroundColor = .systemBackground
         formView.layer.cornerRadius = 40
@@ -52,13 +54,34 @@ class VCExt: UIViewController {
         return formView
     }()
     
-    let scrollView: UIScrollView = {
+    lazy var bottomView: UIView = {
+        let bottomView = UIView()
+        bottomView.backgroundColor = .systemBackground
+        bottomView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return bottomView
+    }()
+    
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView(frame: .zero)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.backgroundColor = .systemBackground
+        stackView.spacing = 10
+        stackView.distribution = .fill
+        
+        return stackView
+    }()
+    
+    lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.alwaysBounceVertical = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.backgroundColor = .systemBackground
         scrollView.alwaysBounceHorizontal = false
         scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.isPagingEnabled = true
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -90,12 +113,9 @@ class VCExt: UIViewController {
         return collectionView
     }()
     
-    // MARK: - Data Functions
+// MARK: - Configure Functions
     
-    
-    
-    // MARK: - UI Functions
-    
+   // MARK: - Title and bodies
     func configureTitle() {
         surfTitle.translatesAutoresizingMaskIntoConstraints = false
         surfTitle.text = SurfText.title
@@ -107,7 +127,7 @@ class VCExt: UIViewController {
             surfTitle.trailingAnchor.constraint(equalTo: formView.trailingAnchor, constant: -padding),
         ])
     }
-    
+
     func configureBody() {
         surfBody.translatesAutoresizingMaskIntoConstraints = false
         surfBody.text = SurfText.body
@@ -134,6 +154,8 @@ class VCExt: UIViewController {
         ])
     }
     
+    
+    // MARK: - FormView
     func configureFormView() {
         let g = scrollView.contentLayoutGuide
         
@@ -149,6 +171,54 @@ class VCExt: UIViewController {
     }
     
     
+    // MARK: - BottomView with subviews
+    func configureBottomView() {
+        view.addSubview(bottomView)
+        view.bringSubviewToFront(bottomView)
+        
+        NSLayoutConstraint.activate([
+            bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            bottomView.heightAnchor.constraint(equalToConstant: view.bounds.height * 0.15),
+            bottomView.widthAnchor.constraint(equalToConstant: view.bounds.width)
+        ])
+    }
+    
+    func configureCallLabel() {
+        surfCall.translatesAutoresizingMaskIntoConstraints = false
+        acceptButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        acceptButton.addTarget(self, action: #selector(showHooray), for: .touchUpInside)
+        
+        surfCall.text = SurfText.iWant
+        surfCall.textAlignment = .center
+        
+        bottomView.addSubview(stackView)
+        stackView.addArrangedSubview(surfCall)
+        stackView.addArrangedSubview(acceptButton)
+        
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: padding),
+            stackView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -padding),
+            stackView.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    
+    // MARK: - UIAlertController
+    @objc func showHooray(sender: UIButton) {
+        print("Ура!")
+        let ac = UIAlertController(title: "Поздравляем!", message: "Ваша заявка успешно отправлена!", preferredStyle: .alert)
+        let close = UIAlertAction(title: "Закрыть", style: .cancel)
+        ac.addAction(close)
+        present(ac, animated: true)
+    }
+    
+    
+    // MARK: - Container for ImageView
     func configureContainer() {
         let g = scrollView.contentLayoutGuide
         
@@ -163,6 +233,7 @@ class VCExt: UIViewController {
     }
     
     
+    // MARK: - ImageView
     func configureImage() {
         let topConstant = backImage.topAnchor.constraint(equalTo: view.topAnchor, constant: -50)
         topConstant.priority = .defaultHigh
@@ -182,6 +253,7 @@ class VCExt: UIViewController {
     }
     
     
+    // MARK: - ScrollView
     func configureSV() {
         NSLayoutConstraint.activate([
             scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -192,6 +264,7 @@ class VCExt: UIViewController {
         
     }
     
+    // MARK: - Layouts
     func configureLayout() {
         layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         // layout.itemSize = CGSize(width: 100, height: 80)
@@ -207,6 +280,8 @@ class VCExt: UIViewController {
         layout2.minimumInteritemSpacing = 10
     }
     
+    
+    // MARK: - CollectionView
     func configureCollectionView() {
         
         NSLayoutConstraint.activate([
@@ -253,7 +328,6 @@ extension VCExt: UICollectionViewDelegateFlowLayout {
         return 10
     }
     
-    
-    
 }
+
 

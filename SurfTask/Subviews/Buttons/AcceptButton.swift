@@ -9,16 +9,18 @@ import UIKit
 
 class AcceptButton: UIButton {
     
+    let label = SurfLabel(textColor: .white, textSize: 18, isBold: false)
+    let back = UIView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         configure()
     }
     
-    convenience init(label: String) {
+    convenience init(backgroundColor: UIColor) {
         self.init(frame: .zero)
-        
-        self.setTitle(label, for: .normal)
+        self.backgroundColor = backgroundColor
     }
     
     required init?(coder: NSCoder) {
@@ -26,10 +28,21 @@ class AcceptButton: UIButton {
     }
     
     private func configure() {
-        layer.cornerRadius = 20
-        setTitleColor(.white, for: .normal)
-        titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        back.translatesAutoresizingMaskIntoConstraints = false
         
-        translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Отправить заявку"
+        
+        layer.cornerRadius = 25
+        
+        addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: centerYAnchor),
+            widthAnchor.constraint(equalToConstant: 200),
+            heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
     }
 }
