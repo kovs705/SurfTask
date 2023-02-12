@@ -27,6 +27,10 @@ class LanguageCell: UICollectionViewCell {
     
     func set(lang: Language) {
         langLabel.text = lang.langName
+        
+        contentView.backgroundColor = lang.state ? UIColor(named: "darkDarkGray") : .systemGray6
+        langLabel.textColor = lang.state ? .white : .label
+        contentView.layer.cornerRadius = 15
     }
     
     private func configure() {

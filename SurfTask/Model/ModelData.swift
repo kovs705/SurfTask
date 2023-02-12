@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Language {
+struct Language: Hashable {
     var langName: String
     var state: Bool
 }
